@@ -1,0 +1,6 @@
+.vs/
+.git/
+obj/
+*.user
+*.suo
+older/
