@@ -11,12 +11,12 @@ RUN powershell -Command \
 
 # Set all Azure environment variables at MACHINE level (including secret)
 RUN powershell -Command \
-    [Environment]::SetEnvironmentVariable('AZURE_CLIENT_ID', '369d74b5-71b6-4bdf-8994-b230265e814b', 'Machine'); \
-    [Environment]::SetEnvironmentVariable('AZURE_CLIENT_SECRET', '%SECRET_GOES_HERE%', 'Machine'); \
-    [Environment]::SetEnvironmentVariable('AZURE_TENANT_ID', '33225117-2f1e-4551-a9a4-469816d4539f', 'Machine'); \
-    [Environment]::SetEnvironmentVariable('AzureWebJobsDashboard', 'UseDevelopmentStorage=true', 'Machine'); \
-    [Environment]::SetEnvironmentVariable('AzureWebJobsEnv', 'Development', 'Machine'); \
-    [Environment]::SetEnvironmentVariable('AzureWebJobsStorage', 'UseDevelopmentStorage=true', 'Machine')
+    [Environment]::SetEnvironmentVariable('AZURE_CLIENT_ID',      '%AZURE_CLIENT_ID%',          'Machine'); \
+    [Environment]::SetEnvironmentVariable('AZURE_CLIENT_SECRET',  '%AZURE_CLIENT_SECRET%',      'Machine'); \
+    [Environment]::SetEnvironmentVariable('AZURE_TENANT_ID',      '%AZURE_TENANT_ID%',          'Machine'); \
+    [Environment]::SetEnvironmentVariable('AzureWebJobsDashboard','UseDevelopmentStorage=true', 'Machine'); \
+    [Environment]::SetEnvironmentVariable('AzureWebJobsEnv',      'Development',                'Machine'); \
+    [Environment]::SetEnvironmentVariable('AzureWebJobsStorage',  'UseDevelopmentStorage=true', 'Machine')
 
 RUN powershell -Command \
     Remove-Website -Name 'Default Web Site'
