@@ -6,7 +6,7 @@
 2. Run the installer
 3. Enable the following during installation:
    - **Hyper-V Windows Features**
-   - **Windows Subsystem for Linux (WSL 2)** - optional, but recommended
+   - **Windows Subsystem for Linux (WSL 2)** - optional, but not needed for this
 
 ### 2. Enable Windows Containers Mode
 
@@ -54,8 +54,8 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ### Prep it
 
 ```ps1
-.\01-init-dockerfile.ps1
-.\02-copy-web-content.ps1
+.\scripts\create-env-script.ps1
+.\scripts\copy-web-content.ps1
 ```
 
 ### Build it
@@ -81,7 +81,7 @@ docker ps
 ### Wait for it to start completely
 
 ```ps1
-./misc/loop-until-started.ps1
+.\scripts\loop-until-started.ps1
 ```
 
 ### Modify it while running
