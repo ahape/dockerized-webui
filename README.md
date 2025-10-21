@@ -55,27 +55,38 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 ```ps1
 .\scripts\create-env-script.ps1
+```
+
+That imports your environment variables (AZURE_\*) needed to run WebUI. They're
+saved to the file `scripts/container/set-env-vars.ps1`. That file isn't
+included in the repo because it has the secret `AZURE_CLIENT_SECRET`.
+
+```ps1
 .\scripts\copy-web-content.ps1
 ```
 
-### Build it
+That copies over the stuff from `/src/azure/BrightmetricsWeb` into this repo
+folder. This stages it for when we build the docker image, since it can't really
+run `COPY` to files outside the docker root folder.
+
+### Build the image
 
 ```ps1
 docker build -t brightmetrics-web:latest .
 ```
 
-### Run it
+### Create + start the container
 
 ```ps1
-docker run -d --name brightmetrics-web --isolation=hyperv -p 8080:80 brightmetrics-web:latest
+docker run -d --name brightmetrics-web --isolation=hyperv -p 8008:80 brightmetrics-web:latest
 ```
 
-### Stop/Start it
+### Stop and dispose container
 
 ```ps1
-docker stop brightmetrics-web
-docker rm brightmetrics-web
-docker ps
+docker stop brightmetrics-web;
+docker rm brightmetrics-web;
+docker ps # Optional check to make sure it's not still running
 ```
 
 ### Wait for it to start completely
