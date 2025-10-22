@@ -78,7 +78,7 @@ docker build -t brightmetrics-web:latest .
 ### Create + start the container
 
 ```ps1
-docker run -d --name brightmetrics-web --isolation=hyperv -p 8008:80 brightmetrics-web:latest
+docker run -d --name brightmetrics-web --isolation=hyperv -p 8008:8008 brightmetrics-web:latest
 ```
 
 ### Stop and dispose container
