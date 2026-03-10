@@ -69,24 +69,22 @@ That copies over the stuff from `/src/azure/BrightmetricsWeb` into this repo
 folder. This stages it for when we build the docker image, since it can't really
 run `COPY` to files outside the docker root folder.
 
-### Build the image
+### Build + start
 
 ```ps1
-docker build -t brightmetrics-web:latest .
+docker compose up -d --build
 ```
 
-### Create + start the container
+Or use the all-in-one restart script (copies content, builds, starts, waits for healthy):
 
 ```ps1
-docker run -d --name brightmetrics-web --isolation=hyperv -p 8008:8008 brightmetrics-web:latest
+.\RESTART.ps1
 ```
 
-### Stop and dispose container
+### Stop
 
 ```ps1
-docker stop brightmetrics-web;
-docker rm brightmetrics-web;
-docker ps # Optional check to make sure it's not still running
+docker compose down
 ```
 
 ### Wait for it to start completely

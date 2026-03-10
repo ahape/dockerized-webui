@@ -1,5 +1,12 @@
 .vs/
 .git/
+.github/
+.env
+.env.*
 obj/
 *.user
 *.suo
+*.md
+*.ps1
+!scripts/container/*.ps1
+docker-compose.yml

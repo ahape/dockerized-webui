@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    image: brightmetrics-web:latest
+    container_name: brightmetrics-web
+    isolation: hyperv
+    ports:
+      - "8008:8008"
+    restart: unless-stopped
