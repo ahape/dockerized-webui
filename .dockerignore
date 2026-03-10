@@ -10,4 +10,3 @@ obj/
 *.ps1
 !scripts/container/*.ps1
 docker-compose.yml
-azurite.Dockerfile

@@ -69,17 +69,18 @@ That copies over the stuff from `/src/azure/BrightmetricsWeb` into this repo
 folder. This stages it for when we build the docker image, since it can't really
 run `COPY` to files outside the docker root folder.
 
-### Architecture
+### Azurite (Azure Storage emulator)
 
-`docker compose up` starts two containers:
+Run Azurite on your host machine before starting the container. The app's connection
+strings use `host.docker.internal` to reach it from inside the container.
 
-| Service | Purpose | Access |
-|---------|---------|--------|
-| **web** | ASP.NET app (IIS) | `localhost:8008` |
-| **azurite** | Azure Storage emulator | `127.0.0.1:10000-10002` from inside the web container |
+```ps1
+# Install once
+npm install -g azurite
 
-Azurite shares the web container's network (`network_mode: "service:web"`), so the
-app can reach it at `127.0.0.1` just like `UseDevelopmentStorage=true` expects.
+# Run before starting the container
+azurite
+```
 
 ### Build + start
 
